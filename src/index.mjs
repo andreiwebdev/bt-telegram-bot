@@ -5,8 +5,9 @@ async function main() {
   try {
     const latestPost = await fetchLatestPost();
     if (latestPost) {
+      const sendTime = new Date();
       await sendPostToTelegram(latestPost);
-      console.log("Post successfully sent to Telegram!");
+      console.log(`Post successfully sent to Telegram at ${sendTime.toISOString()}`);
     }
   } catch (error) {
     console.error("Error in main process:", error);

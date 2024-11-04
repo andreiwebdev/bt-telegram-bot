@@ -6,7 +6,7 @@ let lastProcessedPostId = null;
 export async function fetchLatestPost() {
   try {
     const response = await axios.get(
-      `${config.wordpress.domain}/wp-json/wp/v2/posts?per_page=1&_embed`,
+      `${config.wordpress.domain}/wp-json/wp/v2/posts?per_page=1&_embed&categories=26`,
       {
         headers: {
           Authorization: `Basic ${config.wordpress.auth}`,
