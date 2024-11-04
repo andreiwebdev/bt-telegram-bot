@@ -1,5 +1,6 @@
 import { fetchLatestPost } from "./services/wordpress.mjs";
 import { sendPostToTelegram } from "./services/telegram.mjs";
+import { addNewPost, pathToPostsFile } from "./utils/fileOperations.mjs";
 
 async function main() {
   try {
@@ -7,7 +8,10 @@ async function main() {
     if (latestPost) {
       const sendTime = new Date();
       await sendPostToTelegram(latestPost);
-      console.log(`Post successfully sent to Telegram at ${sendTime.toISOString()}`);
+      console.log(
+        `Post successfully sent to Telegram at ${sendTime.toISOString()}`
+      );
+      await addNewPost(pathToPostsFile, latestPost);
     }
   } catch (error) {
     console.error("Error in main process:", error);
